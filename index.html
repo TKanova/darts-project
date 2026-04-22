@@ -329,6 +329,20 @@
     /* tip at LEFT end of SVG */
   }
 
+  /* ===== LANG SWITCHER ===== */
+  .lang-switcher {
+    display: flex; align-items: center; gap: 2px;
+    background: rgba(26,26,26,0.06); border-radius: 8px; padding: 3px;
+  }
+  .lang-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 600;
+    color: var(--mid); padding: 4px 9px; border-radius: 6px;
+    transition: all .18s; letter-spacing: 0.04em;
+  }
+  .lang-btn:hover { color: var(--charcoal); }
+  .lang-btn.active { background: #fff; color: var(--red); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+
   /* ===== RESPONSIVE ===== */
 
   /* Hamburger button */
@@ -484,14 +498,19 @@
     Darts<sup style="font-size:0.65em">®</sup>
   </a>
   <ul class="nav-links">
-    <li><a onclick="goTo('mission')">About</a></li>
-    <li><a onclick="goTo('quiz')">Find Your Match</a></li>
-    <li><a onclick="goTo('steps')">How to Apply</a></li>
-    <li><a onclick="goTo('alumni')">Alumni</a></li>
-    <li><a onclick="goTo('team')">Our Team</a></li>
-    <li><a onclick="goTo('partners')">Partners</a></li>
+    <li><a onclick="goTo('mission')" data-i18n="nav_about">About</a></li>
+    <li><a onclick="goTo('quiz')" data-i18n="nav_match">Find Your Match</a></li>
+    <li><a onclick="goTo('steps')" data-i18n="nav_apply">How to Apply</a></li>
+    <li><a onclick="goTo('alumni')" data-i18n="nav_alumni">Alumni</a></li>
+    <li><a onclick="goTo('team')" data-i18n="nav_team">Our Team</a></li>
+    <li><a onclick="goTo('partners')" data-i18n="nav_partners">Partners</a></li>
   </ul>
-  <button class="nav-cta" onclick="goTo('steps')">Apply Now →</button>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+    <button class="lang-btn" data-lang="kz" onclick="setLanguage('kz')">KZ</button>
+  </div>
+  <button class="nav-cta" onclick="goTo('steps')" data-i18n="nav_cta">Apply Now →</button>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -499,29 +518,34 @@
 
 <!-- MOBILE NAV DRAWER -->
 <div class="mobile-nav" id="mobile-nav">
-  <a onclick="mobileGoTo('mission')">About</a>
-  <a onclick="mobileGoTo('quiz')">Find Your Match</a>
-  <a onclick="mobileGoTo('steps')">How to Apply</a>
-  <a onclick="mobileGoTo('alumni')">Alumni</a>
-  <a onclick="mobileGoTo('team')">Our Team</a>
-  <a onclick="mobileGoTo('partners')">Partners</a>
-  <button class="mobile-cta" onclick="mobileGoTo('steps')">Apply Now →</button>
+  <a onclick="mobileGoTo('mission')" data-i18n="nav_about">About</a>
+  <a onclick="mobileGoTo('quiz')" data-i18n="nav_match">Find Your Match</a>
+  <a onclick="mobileGoTo('steps')" data-i18n="nav_apply">How to Apply</a>
+  <a onclick="mobileGoTo('alumni')" data-i18n="nav_alumni">Alumni</a>
+  <a onclick="mobileGoTo('team')" data-i18n="nav_team">Our Team</a>
+  <a onclick="mobileGoTo('partners')" data-i18n="nav_partners">Partners</a>
+  <button class="mobile-cta" onclick="mobileGoTo('steps')" data-i18n="nav_cta">Apply Now →</button>
+  <div class="lang-switcher" style="margin-top:8px">
+    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+    <button class="lang-btn" data-lang="kz" onclick="setLanguage('kz')">KZ</button>
+  </div>
 </div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-badge"><span></span> Now accepting applications</div>
-    <h1 class="hero-h1">Your first real<br><em>career move</em><br>starts here.</h1>
-    <p class="hero-sub">Darts Project connects ambitious high school students with internships at Kazakhstan's leading companies — Forte Bank, KPMG, Ritz-Carlton, and beyond.</p>
+    <div class="hero-badge"><span></span> <span data-i18n="hero_badge">Now accepting applications</span></div>
+    <h1 class="hero-h1" data-i18n-html="hero_h1">Your first real<br><em>career move</em><br>starts here.</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Darts Project connects ambitious high school students with internships at Kazakhstan's leading companies — Forte Bank, KPMG, Ritz-Carlton, and beyond.</p>
     <div class="hero-btns">
-      <a class="btn-primary" onclick="goTo('quiz')">Find Your Match ↓</a>
-      <a class="btn-outline" onclick="goTo('alumni')">Read Alumni Stories</a>
+      <a class="btn-primary" onclick="goTo('quiz')" data-i18n="hero_btn1">Find Your Match ↓</a>
+      <a class="btn-outline" onclick="goTo('alumni')" data-i18n="hero_btn2">Read Alumni Stories</a>
     </div>
     <div class="hero-stats">
-      <div><div class="hero-stat-num"><span class="counter" data-target="50">0</span>+</div><div class="hero-stat-label">Interns placed</div></div>
-      <div><div class="hero-stat-num"><span class="counter" data-target="8">0</span></div><div class="hero-stat-label">Partner companies</div></div>
-      <div><div class="hero-stat-num"><span class="counter" data-target="3">0</span></div><div class="hero-stat-label">Partner schools</div></div>
+      <div><div class="hero-stat-num"><span class="counter" data-target="50">0</span>+</div><div class="hero-stat-label" data-i18n="stat_interns">Interns placed</div></div>
+      <div><div class="hero-stat-num"><span class="counter" data-target="8">0</span></div><div class="hero-stat-label" data-i18n="stat_companies">Partner companies</div></div>
+      <div><div class="hero-stat-num"><span class="counter" data-target="3">0</span></div><div class="hero-stat-label" data-i18n="stat_schools">Partner schools</div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -537,13 +561,13 @@
 
       </div>
     </div>
-    <div class="hero-tagline">"With us, you always hit the target."</div>
+    <div class="hero-tagline" data-i18n="hero_tagline">"With us, you always hit the target."</div>
   </div>
 </section>
 
 <!-- PARTNER STRIP -->
 <div class="partner-strip">
-  <div class="partner-label">Trusted partners</div>
+  <div class="partner-label" data-i18n="partner_label">Trusted partners</div>
   <div class="partner-scroll">
     <span class="partner-logo">FORTE BANK</span>
     <span class="partner-logo">KPMG</span>
@@ -565,118 +589,118 @@
 <!-- QUIZ -->
 <section class="section" id="quiz">
   <div class="quiz-header reveal">
-    <div class="section-label">Interactive</div>
-    <h2 class="section-title">Find Your Perfect<br>Internship Match</h2>
-    <p class="section-sub">Answer 4 quick questions and we'll show you which partner company fits you best.</p>
+    <div class="section-label" data-i18n="quiz_label">Interactive</div>
+    <h2 class="section-title" data-i18n-html="quiz_title">Find Your Perfect<br>Internship Match</h2>
+    <p class="section-sub" data-i18n="quiz_sub">Answer 4 quick questions and we'll show you which partner company fits you best.</p>
   </div>
   <div class="quiz-card reveal reveal-delay-2">
     <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div></div>
 
     <!-- Step 1 -->
     <div class="quiz-step active" id="step-1">
-      <div class="quiz-q">What type of work excites you most?</div>
+      <div class="quiz-q" data-i18n="q1_text">What type of work excites you most?</div>
       <div class="quiz-options">
         <button class="quiz-opt" data-value="finance" onclick="selectOpt(this,1)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Working with numbers, data, and financial analysis
+          <span data-i18n="q1_opt1">Working with numbers, data, and financial analysis</span>
         </button>
         <button class="quiz-opt" data-value="tech" onclick="selectOpt(this,1)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          Building tech products and solving digital problems
+          <span data-i18n="q1_opt2">Building tech products and solving digital problems</span>
         </button>
         <button class="quiz-opt" data-value="people" onclick="selectOpt(this,1)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Working with people — clients, hospitality, service
+          <span data-i18n="q1_opt3">Working with people — clients, hospitality, service</span>
         </button>
         <button class="quiz-opt" data-value="marketing" onclick="selectOpt(this,1)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          Marketing, branding, and creative communication
+          <span data-i18n="q1_opt4">Marketing, branding, and creative communication</span>
         </button>
       </div>
       <div class="quiz-nav">
-        <span class="quiz-step-label">Step 1 of 4</span>
-        <button class="btn-primary" onclick="nextStep(1)" id="next-1" style="opacity:0.4;pointer-events:none">Next →</button>
+        <span class="quiz-step-label" data-i18n="step_label_1">Step 1 of 4</span>
+        <button class="btn-primary" onclick="nextStep(1)" id="next-1" style="opacity:0.4;pointer-events:none" data-i18n="next_btn">Next →</button>
       </div>
     </div>
 
     <!-- Step 2 -->
     <div class="quiz-step" id="step-2">
-      <div class="quiz-q">Pick your dream work environment:</div>
+      <div class="quiz-q" data-i18n="q2_text">Pick your dream work environment:</div>
       <div class="quiz-options">
         <button class="quiz-opt" data-value="corporate" onclick="selectOpt(this,2)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Structured corporate office with clear hierarchy
+          <span data-i18n="q2_opt1">Structured corporate office with clear hierarchy</span>
         </button>
         <button class="quiz-opt" data-value="luxury" onclick="selectOpt(this,2)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          Luxury hospitality — world-class service and elegance
+          <span data-i18n="q2_opt2">Luxury hospitality — world-class service and elegance</span>
         </button>
         <button class="quiz-opt" data-value="startup" onclick="selectOpt(this,2)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-          Fast-moving startup / tech environment
+          <span data-i18n="q2_opt3">Fast-moving startup / tech environment</span>
         </button>
         <button class="quiz-opt" data-value="consulting" onclick="selectOpt(this,2)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Consulting and audit — diverse clients, sharp thinking
+          <span data-i18n="q2_opt4">Consulting and audit — diverse clients, sharp thinking</span>
         </button>
       </div>
       <div class="quiz-nav">
-        <span class="quiz-step-label">Step 2 of 4</span>
-        <button class="btn-primary" onclick="nextStep(2)" id="next-2" style="opacity:0.4;pointer-events:none">Next →</button>
+        <span class="quiz-step-label" data-i18n="step_label_2">Step 2 of 4</span>
+        <button class="btn-primary" onclick="nextStep(2)" id="next-2" style="opacity:0.4;pointer-events:none" data-i18n="next_btn">Next →</button>
       </div>
     </div>
 
     <!-- Step 3 -->
     <div class="quiz-step" id="step-3">
-      <div class="quiz-q">What skill are you most proud of?</div>
+      <div class="quiz-q" data-i18n="q3_text">What skill are you most proud of?</div>
       <div class="quiz-options">
         <button class="quiz-opt" data-value="analytical" onclick="selectOpt(this,3)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          Analytical thinking and problem-solving
+          <span data-i18n="q3_opt1">Analytical thinking and problem-solving</span>
         </button>
         <button class="quiz-opt" data-value="communication" onclick="selectOpt(this,3)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Communication and relationship building
+          <span data-i18n="q3_opt2">Communication and relationship building</span>
         </button>
         <button class="quiz-opt" data-value="creativity" onclick="selectOpt(this,3)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
-          Creativity and design thinking
+          <span data-i18n="q3_opt3">Creativity and design thinking</span>
         </button>
         <button class="quiz-opt" data-value="leadership" onclick="selectOpt(this,3)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Leadership and taking initiative
+          <span data-i18n="q3_opt4">Leadership and taking initiative</span>
         </button>
       </div>
       <div class="quiz-nav">
-        <span class="quiz-step-label">Step 3 of 4</span>
-        <button class="btn-primary" onclick="nextStep(3)" id="next-3" style="opacity:0.4;pointer-events:none">Next →</button>
+        <span class="quiz-step-label" data-i18n="step_label_3">Step 3 of 4</span>
+        <button class="btn-primary" onclick="nextStep(3)" id="next-3" style="opacity:0.4;pointer-events:none" data-i18n="next_btn">Next →</button>
       </div>
     </div>
 
     <!-- Step 4 -->
     <div class="quiz-step" id="step-4">
-      <div class="quiz-q">What's your top career goal after school?</div>
+      <div class="quiz-q" data-i18n="q4_text">What's your top career goal after school?</div>
       <div class="quiz-options">
         <button class="quiz-opt" data-value="banker" onclick="selectOpt(this,4)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          Finance / banking — managing capital and investments
+          <span data-i18n="q4_opt1">Finance / banking — managing capital and investments</span>
         </button>
         <button class="quiz-opt" data-value="entrepreneur" onclick="selectOpt(this,4)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-          Entrepreneurship — launching my own venture
+          <span data-i18n="q4_opt2">Entrepreneurship — launching my own venture</span>
         </button>
         <button class="quiz-opt" data-value="engineer" onclick="selectOpt(this,4)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          Tech / engineering — building the future
+          <span data-i18n="q4_opt3">Tech / engineering — building the future</span>
         </button>
         <button class="quiz-opt" data-value="consultant" onclick="selectOpt(this,4)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          Consulting / advisory — helping others solve problems
+          <span data-i18n="q4_opt4">Consulting / advisory — helping others solve problems</span>
         </button>
       </div>
       <div class="quiz-nav">
-        <span class="quiz-step-label">Step 4 of 4</span>
-        <button class="btn-primary" onclick="showResult()" id="next-4" style="opacity:0.4;pointer-events:none">See My Match</button>
+        <span class="quiz-step-label" data-i18n="step_label_4">Step 4 of 4</span>
+        <button class="btn-primary" onclick="showResult()" id="next-4" style="opacity:0.4;pointer-events:none" data-i18n="see_match_btn">See My Match</button>
       </div>
     </div>
 
@@ -684,12 +708,12 @@
     <div class="quiz-result" id="quiz-result">
       <div class="result-badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-        Your Match
+        <span data-i18n="result_badge">Your Match</span>
       </div>
       <div class="result-company" id="result-company">Forte Bank</div>
       <div class="result-desc" id="result-desc"></div>
-      <a class="btn-primary" onclick="goTo('steps')" style="display:inline-flex;cursor:pointer">Apply for this internship →</a><br>
-      <button class="quiz-restart" onclick="restartQuiz()">↺ Retake quiz</button>
+      <a class="btn-primary" onclick="goTo('steps')" style="display:inline-flex;cursor:pointer" data-i18n="result_apply_btn">Apply for this internship →</a><br>
+      <button class="quiz-restart" onclick="restartQuiz()" data-i18n="retake_btn">↺ Retake quiz</button>
     </div>
   </div>
 </section>
@@ -697,34 +721,34 @@
 <!-- MISSION -->
 <section class="section" id="mission" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
   <div class="reveal">
-    <div class="section-label">Our Purpose</div>
-    <h2 class="section-title">Age is never a<br>barrier to impact.</h2>
+    <div class="section-label" data-i18n="mission_label">Our Purpose</div>
+    <h2 class="section-title" data-i18n-html="mission_title">Age is never a<br>barrier to impact.</h2>
     <div class="mission-values">
       <div class="mission-value">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-        <span class="mission-value-text">Connecting talent with real-world opportunity</span>
+        <span class="mission-value-text" data-i18n="mission_val1">Connecting talent with real-world opportunity</span>
       </div>
       <div class="mission-value">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="mission-value-text">Founded by students, for students</span>
+        <span class="mission-value-text" data-i18n="mission_val2">Founded by students, for students</span>
       </div>
       <div class="mission-value">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span class="mission-value-text">Curiosity, leadership, and collaboration</span>
+        <span class="mission-value-text" data-i18n="mission_val3">Curiosity, leadership, and collaboration</span>
       </div>
     </div>
   </div>
   <div class="reveal reveal-delay-2">
-    <div class="mission-quote">"Founded by students for students, Darts Project is more than just an initiative — it's a community opening doors to the next generation."</div>
+    <div class="mission-quote" data-i18n="mission_quote">"Founded by students for students, Darts Project is more than just an initiative — it's a community opening doors to the next generation."</div>
   </div>
 </section>
 
 <!-- HOW TO APPLY -->
 <section class="section-sm" id="steps">
   <div class="reveal">
-    <div class="section-label">Process</div>
-    <h2 class="section-title">How to Apply</h2>
-    <p class="section-sub">Five steps between you and your first real internship experience.</p>
+    <div class="section-label" data-i18n="steps_label">Process</div>
+    <h2 class="section-title" data-i18n="steps_title">How to Apply</h2>
+    <p class="section-sub" data-i18n="steps_sub">Five steps between you and your first real internship experience.</p>
   </div>
   <div class="steps-grid reveal reveal-delay-1">
     <div class="step-item">
@@ -732,66 +756,66 @@
       <div class="step-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C41E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       </div>
-      <div class="step-title">Prepare Your CV</div>
-      <div class="step-desc">Tailor your résumé to highlight relevant experiences and skills for your chosen internship.</div>
+      <div class="step-title" data-i18n="step1_title">Prepare Your CV</div>
+      <div class="step-desc" data-i18n="step1_desc">Tailor your résumé to highlight relevant experiences and skills for your chosen internship.</div>
     </div>
     <div class="step-item">
       <div class="step-num">02</div>
       <div class="step-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C41E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
       </div>
-      <div class="step-title">Write Your Essay</div>
-      <div class="step-desc">Craft a personalised cover letter explaining why you're the right fit. Make it yours.</div>
+      <div class="step-title" data-i18n="step2_title">Write Your Essay</div>
+      <div class="step-desc" data-i18n="step2_desc">Craft a personalised cover letter explaining why you're the right fit. Make it yours.</div>
     </div>
     <div class="step-item">
       <div class="step-num">03</div>
       <div class="step-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C41E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <div class="step-title">Gather References</div>
-      <div class="step-desc">Have academic or professional references ready. Two solid references can make all the difference.</div>
+      <div class="step-title" data-i18n="step3_title">Gather References</div>
+      <div class="step-desc" data-i18n="step3_desc">Have academic or professional references ready. Two solid references can make all the difference.</div>
     </div>
     <div class="step-item">
       <div class="step-num">04</div>
       <div class="step-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C41E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       </div>
-      <div class="step-title">Submit the Form</div>
-      <div class="step-desc">Fill out our application form carefully. Double-check every section before hitting submit.</div>
+      <div class="step-title" data-i18n="step4_title">Submit the Form</div>
+      <div class="step-desc" data-i18n="step4_desc">Fill out our application form carefully. Double-check every section before hitting submit.</div>
     </div>
     <div class="step-item">
       <div class="step-num">05</div>
       <div class="step-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C41E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       </div>
-      <div class="step-title">Hit the Deadline</div>
-      <div class="step-desc">We operate on a rolling basis. Early applicants get priority — don't wait until the last day.</div>
+      <div class="step-title" data-i18n="step5_title">Hit the Deadline</div>
+      <div class="step-desc" data-i18n="step5_desc">We operate on a rolling basis. Early applicants get priority — don't wait until the last day.</div>
     </div>
   </div>
   <div style="text-align:center;margin-top:44px" class="reveal">
-    <a class="btn-primary" href="mailto:dartsprojectqz@gmail.com">Apply via Email →</a>
-    <p style="margin-top:12px;font-size:0.82rem;color:var(--mid)">Contact us at dartsprojectqz@gmail.com with any questions</p>
+    <a class="btn-primary" href="mailto:dartsprojectqz@gmail.com" data-i18n="apply_btn">Apply via Email →</a>
+    <p style="margin-top:12px;font-size:0.82rem;color:var(--mid)" data-i18n="apply_sub">Contact us at dartsprojectqz@gmail.com with any questions</p>
   </div>
 </section>
 
 <!-- ALUMNI -->
 <section class="section" id="alumni">
   <div class="reveal">
-    <div class="section-label">Testimonials</div>
-    <h2 class="section-title">Hear from our alumni</h2>
-    <p class="section-sub">Real students, real internships, real impact.</p>
+    <div class="section-label" data-i18n="alumni_label">Testimonials</div>
+    <h2 class="section-title" data-i18n="alumni_title">Hear from our alumni</h2>
+    <p class="section-sub" data-i18n="alumni_sub">Real students, real internships, real impact.</p>
   </div>
   <div class="alumni-grid">
     <div class="alumni-card reveal reveal-delay-1">
-      <p class="alumni-quote">"Before my internship, I couldn't decide what I wanted to pursue. After completing it, I knew exactly where I was headed — and I had the experience to back it up."</p>
+      <p class="alumni-quote" data-i18n="alumni_q1">"Before my internship, I couldn't decide what I wanted to pursue. After completing it, I knew exactly where I was headed — and I had the experience to back it up."</p>
       <div class="alumni-person"><div class="alumni-avatar">Al</div><div><div class="alumni-name">Alim</div><span class="alumni-company">TrustMe '25</span></div></div>
     </div>
     <div class="alumni-card reveal reveal-delay-2">
-      <p class="alumni-quote">"It was my first internship, and it proved to be an exceptional experience. I'm confident that this opportunity has shaped my professional path meaningfully."</p>
+      <p class="alumni-quote" data-i18n="alumni_q2">"It was my first internship, and it proved to be an exceptional experience. I'm confident that this opportunity has shaped my professional path meaningfully."</p>
       <div class="alumni-person"><div class="alumni-avatar">Am</div><div><div class="alumni-name">Amir</div><span class="alumni-company">Forte Bank '25</span></div></div>
     </div>
     <div class="alumni-card reveal reveal-delay-3">
-      <p class="alumni-quote">"I highly recommend being friendly with everyone! It's super important for getting along with the team and making a real impression at your workplace."</p>
+      <p class="alumni-quote" data-i18n="alumni_q3">"I highly recommend being friendly with everyone! It's super important for getting along with the team and making a real impression at your workplace."</p>
       <div class="alumni-person"><div class="alumni-avatar">Ad</div><div><div class="alumni-name">Adel</div><span class="alumni-company">QazCloud '25</span></div></div>
     </div>
   </div>
@@ -800,13 +824,13 @@
 <!-- TEAM -->
 <section class="section-sm" id="team" style="background:#fff;">
   <div class="reveal">
-    <div class="section-label">The People</div>
-    <h2 class="section-title">Our Team</h2>
-    <p class="section-sub">High school students running a professional organization — across three schools in Astana.</p>
+    <div class="section-label" data-i18n="team_label">The People</div>
+    <h2 class="section-title" data-i18n="team_title">Our Team</h2>
+    <p class="section-sub" data-i18n="team_sub">High school students running a professional organization — across three schools in Astana.</p>
   </div>
 
   <!-- Spectrum -->
-  <div class="team-school-label reveal">Spectrum International School</div>
+  <div class="team-school-label reveal" data-i18n="school_spectrum">Spectrum International School</div>
   <div class="team-grid reveal reveal-delay-1">
     <div class="team-card">
       <div class="team-photo"><img src="data:image/jpeg;base64,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" alt="Bolebay Dinmuhammed"></div>
@@ -836,7 +860,7 @@
   </div>
 
   <!-- NSPM -->
-  <div class="team-school-label reveal" style="margin-top:56px">National School of Physics &amp; Mathematics</div>
+  <div class="team-school-label reveal" style="margin-top:56px" data-i18n="school_nspm">National School of Physics &amp; Mathematics</div>
   <div class="team-grid reveal reveal-delay-1">
     <div class="team-card">
       <div class="team-photo"><img src="data:image/jpeg;base64,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" alt="Lenar Marat"></div>
@@ -861,7 +885,7 @@
   </div>
 
   <!-- Haileybury -->
-  <div class="team-school-label reveal" style="margin-top:56px">Haileybury Astana</div>
+  <div class="team-school-label reveal" style="margin-top:56px" data-i18n="school_haileybury">Haileybury Astana</div>
   <div class="team-grid grid-4 reveal reveal-delay-1">
     <div class="team-card"><div class="team-photo">TD</div><div class="team-name">Tokpanova Daniya</div><div class="team-role">Haileybury Team</div></div>
     <div class="team-card"><div class="team-photo">YB</div><div class="team-name">Yerassyl B.</div><div class="team-role">Haileybury Team</div></div>
@@ -874,46 +898,46 @@
 <!-- PARTNERS -->
 <section class="section" id="partners">
   <div class="reveal">
-    <div class="section-label">Network</div>
-    <h2 class="section-title">Our Partners</h2>
-    <p class="section-sub">Kazakhstan's leading companies trust Darts to find their next generation of talent.</p>
+    <div class="section-label" data-i18n="partners_label">Network</div>
+    <h2 class="section-title" data-i18n="partners_title">Our Partners</h2>
+    <p class="section-sub" data-i18n="partners_sub">Kazakhstan's leading companies trust Darts to find their next generation of talent.</p>
   </div>
   <div class="partners-grid">
     <div class="partner-card reveal reveal-delay-1">
       <img class="partner-logo-img" src="https://logo.clearbit.com/fortebank.kz" alt="Forte Bank" onerror="this.style.display='none'">
       <div class="partner-name">Forte Bank</div>
-      <div class="partner-type">Banking &amp; Finance</div>
+      <div class="partner-type" data-i18n="ptype_banking">Banking &amp; Finance</div>
     </div>
     <div class="partner-card reveal reveal-delay-1">
       <img class="partner-logo-img" src="https://logo.clearbit.com/kpmg.com" alt="KPMG" onerror="this.style.display='none'">
       <div class="partner-name">KPMG</div>
-      <div class="partner-type">Audit &amp; Consulting</div>
+      <div class="partner-type" data-i18n="ptype_audit">Audit &amp; Consulting</div>
     </div>
     <div class="partner-card reveal reveal-delay-2">
       <img class="partner-logo-img" src="https://logo.clearbit.com/ritzcarlton.com" alt="Ritz-Carlton" onerror="this.style.display='none'">
       <div class="partner-name">Ritz-Carlton</div>
-      <div class="partner-type">Luxury Hospitality</div>
+      <div class="partner-type" data-i18n="ptype_hospitality">Luxury Hospitality</div>
     </div>
     <div class="partner-card reveal reveal-delay-2">
       <img class="partner-logo-img" src="https://logo.clearbit.com/telecom.kz" alt="Kazakhtelecom" onerror="this.style.display='none'">
       <div class="partner-name">Kazakhtelecom</div>
-      <div class="partner-type">Telecommunications</div>
+      <div class="partner-type" data-i18n="ptype_telecom">Telecommunications</div>
     </div>
     <div class="partner-card reveal reveal-delay-3">
       <img class="partner-logo-img" src="https://logo.clearbit.com/qazcloud.kz" alt="QazCloud" style="height:40px" onerror="this.style.display='none'">
       <div class="partner-name">QazCloud</div>
-      <div class="partner-type">Cloud &amp; Technology</div>
+      <div class="partner-type" data-i18n="ptype_cloud">Cloud &amp; Technology</div>
     </div>
     <div class="partner-card reveal reveal-delay-3">
       <img class="partner-logo-img" src="https://logo.clearbit.com/trustme.kz" alt="TrustMe" onerror="this.style.display='none'">
       <div class="partner-name">TrustMe</div>
-      <div class="partner-type">Fintech</div>
+      <div class="partner-type" data-i18n="ptype_fintech">Fintech</div>
     </div>
   </div>
   <div class="partner-become reveal">
-    <h3>Want to become a partner?</h3>
-    <p>Join Kazakhstan's fastest-growing high school internship network. Gain access to the next generation of ambitious young professionals.</p>
-    <a class="btn-primary" href="mailto:dartsprojectqz@gmail.com">Get in touch →</a>
+    <h3 data-i18n="become_title">Want to become a partner?</h3>
+    <p data-i18n="become_desc">Join Kazakhstan's fastest-growing high school internship network. Gain access to the next generation of ambitious young professionals.</p>
+    <a class="btn-primary" href="mailto:dartsprojectqz@gmail.com" data-i18n="become_btn">Get in touch →</a>
   </div>
 </section>
 
@@ -922,27 +946,27 @@
   <div class="footer-top">
     <div>
       <div class="footer-brand">Darts Project®</div>
-      <div class="footer-tagline">"With us, you always hit the target."</div>
+      <div class="footer-tagline" data-i18n="footer_tagline">"With us, you always hit the target."</div>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
+      <h4 data-i18n="footer_col_company">Company</h4>
       <ul>
-        <li><a onclick="goTo('mission')" style="cursor:pointer">About Us</a></li>
-        <li><a onclick="goTo('team')" style="cursor:pointer">Our Team</a></li>
-        <li><a onclick="goTo('partners')" style="cursor:pointer">Partners</a></li>
-        <li><a href="#">Privacy Policy</a></li>
+        <li><a onclick="goTo('mission')" style="cursor:pointer" data-i18n="footer_about">About Us</a></li>
+        <li><a onclick="goTo('team')" style="cursor:pointer" data-i18n="nav_team">Our Team</a></li>
+        <li><a onclick="goTo('partners')" style="cursor:pointer" data-i18n="nav_partners">Partners</a></li>
+        <li><a href="#" data-i18n="footer_privacy">Privacy Policy</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Students</h4>
+      <h4 data-i18n="footer_col_students">Students</h4>
       <ul>
-        <li><a onclick="goTo('quiz')" style="cursor:pointer">Find Your Match</a></li>
-        <li><a onclick="goTo('steps')" style="cursor:pointer">How to Apply</a></li>
-        <li><a onclick="goTo('alumni')" style="cursor:pointer">Alumni Stories</a></li>
+        <li><a onclick="goTo('quiz')" style="cursor:pointer" data-i18n="nav_match">Find Your Match</a></li>
+        <li><a onclick="goTo('steps')" style="cursor:pointer" data-i18n="nav_apply">How to Apply</a></li>
+        <li><a onclick="goTo('alumni')" style="cursor:pointer" data-i18n="footer_alumni_stories">Alumni Stories</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h4 data-i18n="footer_col_contact">Contact</h4>
       <ul>
         <li><a href="mailto:dartsprojectqz@gmail.com">dartsprojectqz@gmail.com</a></li>
         <li><a href="https://instagram.com/dartsproject_" target="_blank" rel="noopener">Instagram</a></li>
@@ -952,7 +976,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Darts Project. Astana, Kazakhstan.</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2025 Darts Project. Astana, Kazakhstan.</div>
     <div class="footer-social">
       <a href="https://instagram.com/dartsproject_" target="_blank" title="Instagram">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -983,6 +1007,261 @@ function mobileGoTo(id) {
   setTimeout(() => goTo(id), 100);
 }
 
+// ===== TRANSLATIONS =====
+const translations = {
+  en: {
+    nav_about:'About', nav_match:'Find Your Match', nav_apply:'How to Apply',
+    nav_alumni:'Alumni', nav_team:'Our Team', nav_partners:'Partners', nav_cta:'Apply Now →',
+    hero_badge:'Now accepting applications',
+    hero_h1:'Your first real<br><em>career move</em><br>starts here.',
+    hero_sub:'Darts Project connects ambitious high school students with internships at Kazakhstan\'s leading companies — Forte Bank, KPMG, Ritz-Carlton, and beyond.',
+    hero_btn1:'Find Your Match ↓', hero_btn2:'Read Alumni Stories',
+    stat_interns:'Interns placed', stat_companies:'Partner companies', stat_schools:'Partner schools',
+    hero_tagline:'"With us, you always hit the target."',
+    partner_label:'Trusted partners',
+    quiz_label:'Interactive',
+    quiz_title:'Find Your Perfect<br>Internship Match',
+    quiz_sub:'Answer 4 quick questions and we\'ll show you which partner company fits you best.',
+    q1_text:'What type of work excites you most?',
+    q1_opt1:'Working with numbers, data, and financial analysis',
+    q1_opt2:'Building tech products and solving digital problems',
+    q1_opt3:'Working with people — clients, hospitality, service',
+    q1_opt4:'Marketing, branding, and creative communication',
+    q2_text:'Pick your dream work environment:',
+    q2_opt1:'Structured corporate office with clear hierarchy',
+    q2_opt2:'Luxury hospitality — world-class service and elegance',
+    q2_opt3:'Fast-moving startup / tech environment',
+    q2_opt4:'Consulting and audit — diverse clients, sharp thinking',
+    q3_text:'What skill are you most proud of?',
+    q3_opt1:'Analytical thinking and problem-solving',
+    q3_opt2:'Communication and relationship building',
+    q3_opt3:'Creativity and design thinking',
+    q3_opt4:'Leadership and taking initiative',
+    q4_text:'What\'s your top career goal after school?',
+    q4_opt1:'Finance / banking — managing capital and investments',
+    q4_opt2:'Entrepreneurship — launching my own venture',
+    q4_opt3:'Tech / engineering — building the future',
+    q4_opt4:'Consulting / advisory — helping others solve problems',
+    step_label_1:'Step 1 of 4', step_label_2:'Step 2 of 4', step_label_3:'Step 3 of 4', step_label_4:'Step 4 of 4',
+    next_btn:'Next →', see_match_btn:'See My Match',
+    result_badge:'Your Match', result_apply_btn:'Apply for this internship →', retake_btn:'↺ Retake quiz',
+    mission_label:'Our Purpose',
+    mission_title:'Age is never a<br>barrier to impact.',
+    mission_val1:'Connecting talent with real-world opportunity',
+    mission_val2:'Founded by students, for students',
+    mission_val3:'Curiosity, leadership, and collaboration',
+    mission_quote:'"Founded by students for students, Darts Project is more than just an initiative — it\'s a community opening doors to the next generation."',
+    steps_label:'Process', steps_title:'How to Apply',
+    steps_sub:'Five steps between you and your first real internship experience.',
+    step1_title:'Prepare Your CV', step1_desc:'Tailor your résumé to highlight relevant experiences and skills for your chosen internship.',
+    step2_title:'Write Your Essay', step2_desc:'Craft a personalised cover letter explaining why you\'re the right fit. Make it yours.',
+    step3_title:'Gather References', step3_desc:'Have academic or professional references ready. Two solid references can make all the difference.',
+    step4_title:'Submit the Form', step4_desc:'Fill out our application form carefully. Double-check every section before hitting submit.',
+    step5_title:'Hit the Deadline', step5_desc:'We operate on a rolling basis. Early applicants get priority — don\'t wait until the last day.',
+    apply_btn:'Apply via Email →', apply_sub:'Contact us at dartsprojectqz@gmail.com with any questions',
+    alumni_label:'Testimonials', alumni_title:'Hear from our alumni', alumni_sub:'Real students, real internships, real impact.',
+    alumni_q1:'"Before my internship, I couldn\'t decide what I wanted to pursue. After completing it, I knew exactly where I was headed — and I had the experience to back it up."',
+    alumni_q2:'"It was my first internship, and it proved to be an exceptional experience. I\'m confident that this opportunity has shaped my professional path meaningfully."',
+    alumni_q3:'"I highly recommend being friendly with everyone! It\'s super important for getting along with the team and making a real impression at your workplace."',
+    team_label:'The People', team_title:'Our Team',
+    team_sub:'High school students running a professional organization — across three schools in Astana.',
+    school_spectrum:'Spectrum International School', school_nspm:'National School of Physics & Mathematics', school_haileybury:'Haileybury Astana',
+    partners_label:'Network', partners_title:'Our Partners',
+    partners_sub:'Kazakhstan\'s leading companies trust Darts to find their next generation of talent.',
+    ptype_banking:'Banking & Finance', ptype_audit:'Audit & Consulting', ptype_hospitality:'Luxury Hospitality',
+    ptype_telecom:'Telecommunications', ptype_cloud:'Cloud & Technology', ptype_fintech:'Fintech',
+    become_title:'Want to become a partner?',
+    become_desc:'Join Kazakhstan\'s fastest-growing high school internship network. Gain access to the next generation of ambitious young professionals.',
+    become_btn:'Get in touch →',
+    footer_tagline:'"With us, you always hit the target."',
+    footer_col_company:'Company', footer_col_students:'Students', footer_col_contact:'Contact',
+    footer_about:'About Us', footer_privacy:'Privacy Policy', footer_alumni_stories:'Alumni Stories',
+    footer_copy:'© 2025 Darts Project. Astana, Kazakhstan.',
+    result_finance:'Your interest in finance makes Forte Bank a natural fit. You\'ll get hands-on experience in banking operations, financial analysis, and client relationship management.',
+    result_tech:'Your tech-forward mindset aligns perfectly with QazCloud. You\'ll work on cloud infrastructure, digital transformation, and modern software solutions.',
+    result_people:'Your passion for people is a natural fit for Ritz-Carlton. World-class hospitality training and a prestigious global brand on your CV from day one.',
+    result_marketing:'Your creative communication skills fit TrustMe\'s fintech marketing needs. You\'ll work on brand strategy, social media, and customer engagement.',
+    result_banker:'Your goal in finance makes Forte Bank the obvious choice. Gain exposure to banking operations and financial products from the very beginning.',
+    result_engineer:'Your technical aspirations align with Kazakhtelecom — Kazakhstan\'s backbone telecom provider. Dive into network infrastructure and digital products.',
+    result_consultant:'Analytical and driven? KPMG is your match. Assist with audit, advisory, and consulting projects for major Kazakhstani clients.',
+    result_default:'You\'re a great all-rounder! Reach out to our team directly and we\'ll help find the internship that fits your unique profile best.',
+  },
+  ru: {
+    nav_about:'О нас', nav_match:'Найти стажировку', nav_apply:'Как подать заявку',
+    nav_alumni:'Выпускники', nav_team:'Наша команда', nav_partners:'Партнёры', nav_cta:'Подать заявку →',
+    hero_badge:'Приём заявок открыт',
+    hero_h1:'Твой первый реальный<br><em>карьерный шаг</em><br>начинается здесь.',
+    hero_sub:'Darts Project соединяет целеустремлённых школьников со стажировками в ведущих компаниях Казахстана — Forte Bank, KPMG, Ritz-Carlton и других.',
+    hero_btn1:'Найти стажировку ↓', hero_btn2:'Истории выпускников',
+    stat_interns:'Стажёров трудоустроено', stat_companies:'Компаний-партнёров', stat_schools:'Школ-партнёров',
+    hero_tagline:'«С нами ты всегда попадаешь в цель.»',
+    partner_label:'Надёжные партнёры',
+    quiz_label:'Интерактивно',
+    quiz_title:'Найди свою идеальную<br>стажировку',
+    quiz_sub:'Ответь на 4 вопроса — и мы подберём компанию, которая тебе подходит.',
+    q1_text:'Какой вид работы вас привлекает больше всего?',
+    q1_opt1:'Работа с цифрами, данными и финансовым анализом',
+    q1_opt2:'Создание технологических продуктов и решение цифровых задач',
+    q1_opt3:'Работа с людьми — клиенты, гостеприимство, сервис',
+    q1_opt4:'Маркетинг, брендинг и творческая коммуникация',
+    q2_text:'Выбери идеальную рабочую среду:',
+    q2_opt1:'Структурированный корпоративный офис с чёткой иерархией',
+    q2_opt2:'Роскошное гостеприимство — сервис мирового класса и элегантность',
+    q2_opt3:'Динамичная стартап / технологическая среда',
+    q2_opt4:'Консалтинг и аудит — разнообразные клиенты, острое мышление',
+    q3_text:'Каким навыком ты больше всего гордишься?',
+    q3_opt1:'Аналитическое мышление и решение проблем',
+    q3_opt2:'Коммуникация и построение отношений',
+    q3_opt3:'Креативность и дизайн-мышление',
+    q3_opt4:'Лидерство и инициативность',
+    q4_text:'Какова твоя главная карьерная цель после школы?',
+    q4_opt1:'Финансы / банкинг — управление капиталом и инвестициями',
+    q4_opt2:'Предпринимательство — создание собственного бизнеса',
+    q4_opt3:'Технологии / инженерия — строить будущее',
+    q4_opt4:'Консалтинг / консультирование — помогать другим решать задачи',
+    step_label_1:'Шаг 1 из 4', step_label_2:'Шаг 2 из 4', step_label_3:'Шаг 3 из 4', step_label_4:'Шаг 4 из 4',
+    next_btn:'Далее →', see_match_btn:'Узнать мой результат',
+    result_badge:'Твой результат', result_apply_btn:'Подать заявку на эту стажировку →', retake_btn:'↺ Пройти заново',
+    mission_label:'Наша миссия',
+    mission_title:'Возраст — не<br>преграда для роста.',
+    mission_val1:'Соединяем таланты с реальными возможностями',
+    mission_val2:'Создано студентами для студентов',
+    mission_val3:'Любопытство, лидерство и сотрудничество',
+    mission_quote:'«Основанный студентами для студентов, Darts Project — это не просто инициатива, это сообщество, открывающее двери для следующего поколения.»',
+    steps_label:'Процесс', steps_title:'Как подать заявку',
+    steps_sub:'Пять шагов между тобой и твоим первым реальным опытом стажировки.',
+    step1_title:'Подготовь резюме', step1_desc:'Адаптируй своё резюме, выделив релевантный опыт и навыки для выбранной стажировки.',
+    step2_title:'Напиши эссе', step2_desc:'Составь персональное сопроводительное письмо с объяснением, почему ты подходишь. Сделай его своим.',
+    step3_title:'Собери рекомендации', step3_desc:'Подготовь академические или профессиональные рекомендации. Две хорошие рекомендации могут изменить всё.',
+    step4_title:'Отправь форму', step4_desc:'Тщательно заполни нашу заявку. Перепроверь каждый раздел перед отправкой.',
+    step5_title:'Не пропусти дедлайн', step5_desc:'Мы работаем на скользящей основе. Ранние заявки получают приоритет — не жди до последнего.',
+    apply_btn:'Подать заявку по email →', apply_sub:'По всем вопросам пишите на dartsprojectqz@gmail.com',
+    alumni_label:'Отзывы', alumni_title:'Послушай наших выпускников', alumni_sub:'Реальные студенты, реальные стажировки, реальный результат.',
+    alumni_q1:'«До стажировки я не мог определиться, чем хочу заниматься. После неё я точно знал, куда двигаться — и у меня был опыт, подтверждающий это.»',
+    alumni_q2:'«Это была моя первая стажировка, и она оказалась исключительным опытом. Я уверен, что эта возможность значительно повлияла на мой профессиональный путь.»',
+    alumni_q3:'«Я очень рекомендую быть дружелюбным со всеми! Это крайне важно для взаимодействия с командой и того, чтобы произвести настоящее впечатление на рабочем месте.»',
+    team_label:'Люди', team_title:'Наша команда',
+    team_sub:'Школьники, управляющие профессиональной организацией — в трёх школах Астаны.',
+    school_spectrum:'Международная школа Spectrum', school_nspm:'Национальная школа физики и математики', school_haileybury:'Haileybury Astana',
+    partners_label:'Сеть', partners_title:'Наши партнёры',
+    partners_sub:'Ведущие компании Казахстана доверяют Darts в поиске следующего поколения талантов.',
+    ptype_banking:'Банковское дело и финансы', ptype_audit:'Аудит и консалтинг', ptype_hospitality:'Роскошное гостеприимство',
+    ptype_telecom:'Телекоммуникации', ptype_cloud:'Облачные технологии', ptype_fintech:'Финтех',
+    become_title:'Хотите стать партнёром?',
+    become_desc:'Присоединяйтесь к быстрорастущей сети школьных стажировок Казахстана. Получите доступ к следующему поколению амбициозных молодых профессионалов.',
+    become_btn:'Связаться с нами →',
+    footer_tagline:'«С нами ты всегда попадаешь в цель.»',
+    footer_col_company:'Компания', footer_col_students:'Студентам', footer_col_contact:'Контакты',
+    footer_about:'О нас', footer_privacy:'Политика конфиденциальности', footer_alumni_stories:'Истории выпускников',
+    footer_copy:'© 2025 Darts Project. Астана, Казахстан.',
+    result_finance:'Твой интерес к финансам делает Forte Bank идеальным выбором. Ты получишь практический опыт в банковских операциях, финансовом анализе и работе с клиентами.',
+    result_tech:'Твоя технологическая направленность идеально совпадает с QazCloud. Ты будешь работать над облачной инфраструктурой, цифровой трансформацией и современными программными решениями.',
+    result_people:'Твоя страсть к работе с людьми — это именно то, что нужно Ritz-Carlton. Обучение гостеприимству мирового класса и престижный международный бренд с первого дня.',
+    result_marketing:'Твои навыки творческой коммуникации отлично подходят для маркетинга TrustMe. Ты будешь работать над стратегией бренда, социальными сетями и вовлечённостью клиентов.',
+    result_banker:'Твоя цель в сфере финансов делает Forte Bank очевидным выбором. Получи опыт в банковских операциях и финансовых продуктах с самого начала.',
+    result_engineer:'Твои технические амбиции совпадают с Kazakhtelecom — ведущим телекоммуникационным провайдером Казахстана. Погрузись в сетевую инфраструктуру и цифровые продукты.',
+    result_consultant:'Аналитический и целеустремлённый? KPMG — твой выбор. Помогай с аудитом и консалтинговыми проектами для крупных казахстанских клиентов.',
+    result_default:'Ты — настоящий универсал! Обратись к нашей команде напрямую, и мы поможем найти стажировку, которая подходит именно тебе.',
+  },
+  kz: {
+    nav_about:'Біз туралы', nav_match:'Сәйкестік тап', nav_apply:'Қалай өтінім беруге болады',
+    nav_alumni:'Түлектер', nav_team:'Біздің топ', nav_partners:'Серіктестер', nav_cta:'Өтінім беру →',
+    hero_badge:'Өтінімдер қабылдануда',
+    hero_h1:'Сенің бірінші нақты<br><em>мансаптық қадамың</em><br>осында басталады.',
+    hero_sub:'Darts Project — табысты мектеп оқушыларын Қазақстанның жетекші компанияларындағы тәжірибемен байланыстырады: Forte Bank, KPMG, Ritz-Carlton және басқалары.',
+    hero_btn1:'Сәйкестік тап ↓', hero_btn2:'Түлектер туралы оқу',
+    stat_interns:'Тәжірибеден өткен', stat_companies:'Серіктес компания', stat_schools:'Серіктес мектеп',
+    hero_tagline:'«Бізбен бірге сен әрқашан нысанаға тиесің.»',
+    partner_label:'Сенімді серіктестер',
+    quiz_label:'Интерактивті',
+    quiz_title:'Өзіңе сәйкес<br>тәжірибені тап',
+    quiz_sub:'4 сұраққа жауап бер — біз саған қай компания сәйкес келетінін айтамыз.',
+    q1_text:'Сені қандай жұмыс түрі қызықтырады?',
+    q1_opt1:'Сандар, деректер және қаржылық талдаумен жұмыс',
+    q1_opt2:'Технологиялық өнімдер құру және цифрлық мәселелерді шешу',
+    q1_opt3:'Адамдармен жұмыс — клиенттер, қонақжайлылық, қызмет',
+    q1_opt4:'Маркетинг, брендинг және шығармашылық коммуникация',
+    q2_text:'Арманыңдағы жұмыс ортасын таңда:',
+    q2_opt1:'Нақты иерархиясы бар құрылымды корпоративтік кеңсе',
+    q2_opt2:'Люкс қонақжайлылық — әлемдік деңгейдегі қызмет және талғам',
+    q2_opt3:'Жылдам дамып жатқан стартап / технологиялық орта',
+    q2_opt4:'Консалтинг және аудит — алуан клиенттер, өткір ойлау',
+    q3_text:'Қандай дағдыңмен ең көп мақтанасың?',
+    q3_opt1:'Аналитикалық ойлау және мәселелерді шешу',
+    q3_opt2:'Қарым-қатынас орнату және байланыс',
+    q3_opt3:'Шығармашылық және дизайн-ойлау',
+    q3_opt4:'Көшбасшылық және бастамашылық',
+    q4_text:'Мектептен кейінгі негізгі мансаптық мақсатың қандай?',
+    q4_opt1:'Қаржы / банк ісі — капиталды және инвестицияларды басқару',
+    q4_opt2:'Кәсіпкерлік — өз бизнесімді ашу',
+    q4_opt3:'Технологиялар / инженерия — болашақ құру',
+    q4_opt4:'Консалтинг / кеңес беру — басқаларға мәселелерді шешуге көмектесу',
+    step_label_1:'1-қадам / 4', step_label_2:'2-қадам / 4', step_label_3:'3-қадам / 4', step_label_4:'4-қадам / 4',
+    next_btn:'Келесі →', see_match_btn:'Нәтижемді көру',
+    result_badge:'Сенің нәтижең', result_apply_btn:'Бұл тәжірибеге өтінім беру →', retake_btn:'↺ Қайта тапсыру',
+    mission_label:'Біздің мақсат',
+    mission_title:'Жас ешқашан<br>кедергі болмайды.',
+    mission_val1:'Таланттарды нақты мүмкіндіктермен байланыстыру',
+    mission_val2:'Студенттер арқылы студенттер үшін құрылды',
+    mission_val3:'Қызығушылық, көшбасшылық және ынтымақтастық',
+    mission_quote:'«Студенттер арқылы студенттер үшін құрылған Darts Project — бұл жай ғана бастама емес, бұл келесі ұрпаққа есік ашатын қауымдастық.»',
+    steps_label:'Үрдіс', steps_title:'Қалай өтінім беруге болады',
+    steps_sub:'Сен мен бірінші нақты тәжірибе арасындағы бес қадам.',
+    step1_title:'Түйіндемеңді дайында', step1_desc:'Таңдаған тәжірибеңе қатысты тәжірибе мен дағдыларды бөлектей отырып, түйіндемеңді бейімде.',
+    step2_title:'Эссе жаз', step2_desc:'Неге сен дұрыс кандидат екеніңді түсіндіретін жеке хат жаз. Оны өзіңдікі ет.',
+    step3_title:'Ұсынымдар жина', step3_desc:'Академиялық немесе кәсіби ұсынымдарды дайындаңыз. Екі мықты ұсыным бәрін өзгерте алады.',
+    step4_title:'Пішінді жіберу', step4_desc:'Өтінімді мұқият толтырыңыз. Жіберер алдында әрбір бөлімді тексеріңіз.',
+    step5_title:'Мерзімді жіберіп алма', step5_desc:'Біз айналмалы негізде жұмыс жасаймыз. Ерте өтінімдер басымдыққа ие — соңғы күнге дейін күтпе.',
+    apply_btn:'Email арқылы өтінім беру →', apply_sub:'Барлық сұрақтар бойынша dartsprojectqz@gmail.com мекенжайына жазыңыз',
+    alumni_label:'Куәліктер', alumni_title:'Түлектерімізден естіңіз', alumni_sub:'Нақты студенттер, нақты тәжірибелер, нақты нәтиже.',
+    alumni_q1:'«Тәжірибеден бұрын мен не істегім келетінін шеше алмадым. Одан кейін мен қайда бару керектігімді нақты білдім — және мұны дәлелдейтін тәжірибем болды.»',
+    alumni_q2:'«Бұл менің бірінші тәжірибем болды және ол ерекше тәжірибеге айналды. Бұл мүмкіндік менің кәсіби жолыма мәнді түрде ықпал еткеніне сенімдімін.»',
+    alumni_q3:'«Барлығымен достық қарым-қатынас орнатуды қатты ұсынамын! Бұл командамен тіл табысу және жұмыс орнында нақты әсер қалдыру үшін өте маңызды.»',
+    team_label:'Адамдар', team_title:'Біздің топ',
+    team_sub:'Астанадағы үш мектептегі кәсіби ұйымды басқаратын мектеп оқушылары.',
+    school_spectrum:'Spectrum Халықаралық мектебі', school_nspm:'Физика-математика мектебі', school_haileybury:'Haileybury Astana',
+    partners_label:'Желі', partners_title:'Біздің серіктестер',
+    partners_sub:'Қазақстанның жетекші компаниялары келесі ұрпақ таланттарын табуда Darts-қа сенеді.',
+    ptype_banking:'Банк ісі және қаржы', ptype_audit:'Аудит және консалтинг', ptype_hospitality:'Люкс қонақжайлылық',
+    ptype_telecom:'Телекоммуникация', ptype_cloud:'Бұлт технологиялары', ptype_fintech:'Финтех',
+    become_title:'Серіктес болғыңыз келе ме?',
+    become_desc:'Қазақстанның ең жылдам дамып жатқан мектеп тәжірибесі желісіне қосылыңыз. Келесі ұрпақтың табысты жас кәсіпқойларына қол жеткізіңіз.',
+    become_btn:'Хабарласыңыз →',
+    footer_tagline:'«Бізбен бірге сен әрқашан нысанаға тиесің.»',
+    footer_col_company:'Компания', footer_col_students:'Студенттерге', footer_col_contact:'Байланыс',
+    footer_about:'Біз туралы', footer_privacy:'Құпиялылық саясаты', footer_alumni_stories:'Түлектер туралы',
+    footer_copy:'© 2025 Darts Project. Астана, Қазақстан.',
+    result_finance:'Қаржыға деген қызығушылығың Forte Bank-ты табиғи таңдауыңа айналдырады. Банктік операциялар, қаржылық талдау және клиенттермен жұмыс бойынша практикалық тәжірибе аласың.',
+    result_tech:'Технологияға бағытталған ойлауың QazCloud-пен тамаша сәйкеседі. Бұлтты инфрақұрылым, цифрлық трансформация және заманауи бағдарламалық шешімдермен жұмыс жасайсың.',
+    result_people:'Адамдармен жұмысқа деген құштарлығың Ritz-Carlton үшін тамаша. Дүниежүзілік деңгейдегі қонақжайлылық оқытуы және бірінші күнінен бастап мәртебелі халықаралық бренд.',
+    result_marketing:'Шығармашылық коммуникация дағдыларың TrustMe-нің финтех маркетинг қажеттіліктеріне сәйкес келеді. Бренд стратегиясы, әлеуметтік медиа және тұтынушылармен байланыс бойынша жұмыс жасайсың.',
+    result_banker:'Қаржыдағы мақсатың Forte Bank-ты айқын таңдауыңа айналдырады. Бастапқыдан банктік операциялар мен қаржылық өнімдерге тәжірибе ал.',
+    result_engineer:'Техникалық амбицияларың Қазақстанның негізгі телеком провайдері Kazakhtelecom-мен сәйкеседі. Желілік инфрақұрылым мен цифрлық өнімдерге батыл.',
+    result_consultant:'Аналитикалық және мақсатты ма? KPMG — сенің таңдауың. Ірі қазақстандық клиенттер үшін аудит және консалтинг жобаларына көмектес.',
+    result_default:'Сен нағыз универсалсың! Командамызға тікелей хабарласыңыз, біз саған сәйкес тәжірибені табуға көмектесеміз.',
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const t = translations[lang][el.dataset.i18n];
+    if (t !== undefined) el.textContent = t;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const t = translations[lang][el.dataset.i18nHtml];
+    if (t !== undefined) el.innerHTML = t;
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+// ===== END TRANSLATIONS =====
+
 // SCROLL HELPER
 function goTo(id) {
   const el = document.getElementById(id);
@@ -1005,14 +1284,14 @@ function nextStep(cur) {
   document.getElementById('quiz-progress').style.width = (cur/4*100) + '%';
 }
 const resultMap = {
-  finance:   { co:'Forte Bank',       desc:'Your interest in finance makes Forte Bank a natural fit. You\'ll get hands-on experience in banking operations, financial analysis, and client relationship management.' },
-  tech:      { co:'QazCloud',          desc:'Your tech-forward mindset aligns perfectly with QazCloud. You\'ll work on cloud infrastructure, digital transformation, and modern software solutions.' },
-  people:    { co:'Ritz-Carlton Astana', desc:'Your passion for people is a natural fit for Ritz-Carlton. World-class hospitality training and a prestigious global brand on your CV from day one.' },
-  marketing: { co:'TrustMe',           desc:'Your creative communication skills fit TrustMe\'s fintech marketing needs. You\'ll work on brand strategy, social media, and customer engagement.' },
-  banker:    { co:'Forte Bank',        desc:'Your goal in finance makes Forte Bank the obvious choice. Gain exposure to banking operations and financial products from the very beginning.' },
-  engineer:  { co:'Kazakhtelecom',    desc:'Your technical aspirations align with Kazakhtelecom — Kazakhstan\'s backbone telecom provider. Dive into network infrastructure and digital products.' },
-  consultant:{ co:'KPMG',             desc:'Analytical and driven? KPMG is your match. Assist with audit, advisory, and consulting projects for major Kazakhstani clients.' },
-  default:   { co:'Darts Project',    desc:'You\'re a great all-rounder! Reach out to our team directly and we\'ll help find the internship that fits your unique profile best.' }
+  finance:    { co:'Forte Bank',          key:'result_finance' },
+  tech:       { co:'QazCloud',            key:'result_tech' },
+  people:     { co:'Ritz-Carlton Astana', key:'result_people' },
+  marketing:  { co:'TrustMe',            key:'result_marketing' },
+  banker:     { co:'Forte Bank',          key:'result_banker' },
+  engineer:   { co:'Kazakhtelecom',      key:'result_engineer' },
+  consultant: { co:'KPMG',               key:'result_consultant' },
+  default:    { co:'Darts Project',       key:'result_default' }
 };
 function showResult() {
   if (!answers[4]) return;
@@ -1026,7 +1305,7 @@ function showResult() {
   else if (a1==='marketing')               r=resultMap.marketing;
   else if (a4==='consultant')              r=resultMap.consultant;
   document.getElementById('result-company').textContent = r.co;
-  document.getElementById('result-desc').textContent = r.desc;
+  document.getElementById('result-desc').textContent = translations[currentLang][r.key] || '';
   document.getElementById('quiz-result').classList.add('active');
 }
 function restartQuiz() {
@@ -1052,6 +1331,9 @@ function animCounters() {
 }
 const heroObs=new IntersectionObserver(es=>{if(es[0].isIntersecting){animCounters();heroObs.disconnect();}},{threshold:0.4});
 heroObs.observe(document.querySelector('.hero-stats'));
+
+// Init language
+setLanguage(currentLang);
 </script>
 </body>
 </html>
