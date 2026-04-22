@@ -328,6 +328,148 @@
     display:inline-block;
     /* tip at LEFT end of SVG */
   }
+
+  /* ===== RESPONSIVE ===== */
+
+  /* Hamburger button */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--charcoal);
+    border-radius: 2px;
+    transition: transform .3s, opacity .3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile nav drawer */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0; bottom: 0;
+    background: rgba(250,247,242,0.97);
+    backdrop-filter: blur(16px);
+    z-index: 98;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    animation: fadeInUp .25s ease both;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: color .2s;
+    cursor: pointer;
+  }
+  .mobile-nav a:hover { color: var(--red); }
+  .mobile-nav .mobile-cta {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background .2s;
+  }
+  .mobile-nav .mobile-cta:hover { background: var(--red-dark); }
+
+  /* Tablet: 769px – 1024px */
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    .hero-left { padding: 60px 32px 60px 40px; }
+    .section { padding: 80px 40px; }
+    .section-sm { padding: 60px 40px; }
+    .partner-strip { padding: 24px 40px; }
+    footer { padding: 60px 40px 40px; }
+    .steps-grid { grid-template-columns: repeat(3, 1fr); }
+    .alumni-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(4, 1fr); }
+    .team-grid.grid-4 { grid-template-columns: repeat(3, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+
+  /* Mobile: ≤ 768px */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none !important; }
+    .nav-cta { display: none !important; }
+    .nav-hamburger { display: flex; }
+
+    #hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding-top: 68px;
+    }
+    .hero-left { padding: 40px 24px 36px; }
+    .hero-right { min-height: 280px; padding: 48px 0; }
+    .dartboard { width: 200px; height: 200px; }
+    .r1 { width:200px; height:200px; }
+    .r2 { width:164px; height:164px; }
+    .r3 { width:128px; height:128px; }
+    .r4 { width:92px; height:92px; }
+    .r5 { width:56px; height:56px; }
+    .r6 { width:24px; height:24px; }
+    .dart-svg.d1 { width:60px; }
+    .dart-svg.d2 { width:55px; }
+    .dart-svg.d3 { width:52px; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .hero-btns { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .hero-btns .btn-primary,
+    .hero-btns .btn-outline { width: 100%; text-align: center; justify-content: center; }
+
+    .section { padding: 56px 20px; }
+    .section-sm { padding: 48px 20px; }
+    .partner-strip { padding: 20px 20px; }
+
+    #mission {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+      padding: 56px 20px !important;
+    }
+
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .alumni-grid { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+    .team-grid.grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+    footer { padding: 48px 20px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+
+    .quiz-card { padding: 28px 18px; }
+    .quiz-q { font-size: 1.1rem; }
+    .partner-become { padding: 28px 20px; }
+  }
+
+  /* Small mobile: ≤ 480px */
+  @media (max-width: 480px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
+    .section-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  }
 </style>
 </head>
 <body>
@@ -350,7 +492,21 @@
     <li><a onclick="goTo('partners')">Partners</a></li>
   </ul>
   <button class="nav-cta" onclick="goTo('steps')">Apply Now →</button>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="mobile-nav" id="mobile-nav">
+  <a onclick="mobileGoTo('mission')">About</a>
+  <a onclick="mobileGoTo('quiz')">Find Your Match</a>
+  <a onclick="mobileGoTo('steps')">How to Apply</a>
+  <a onclick="mobileGoTo('alumni')">Alumni</a>
+  <a onclick="mobileGoTo('team')">Our Team</a>
+  <a onclick="mobileGoTo('partners')">Partners</a>
+  <button class="mobile-cta" onclick="mobileGoTo('steps')">Apply Now →</button>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -812,6 +968,21 @@
 </footer>
 
 <script>
+// MOBILE NAV
+function toggleMenu() {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('mobile-nav');
+  btn.classList.toggle('open');
+  nav.classList.toggle('open');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function mobileGoTo(id) {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => goTo(id), 100);
+}
+
 // SCROLL HELPER
 function goTo(id) {
   const el = document.getElementById(id);
